@@ -4,20 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ── CORS ────────────────────────────────────────────────────────────────────
-// Allows any origin so the Vercel frontend can reach this backend.
-// Scoped down to specific origins for production.
+// ── CORS ─────────────────────────────────────────────────────────────────────
 builder.Services.AddCors(opts => opts.AddDefaultPolicy(policy =>
     policy
-        .SetIsOriginAllowed(_ => true)   // allow Vercel + localhost
+        .SetIsOriginAllowed(_ => true)
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials()
 ));
 
 // ── Database (EF Core in-memory) ─────────────────────────────────────────────
-// No PostgreSQL needed for the demo — all data lives in memory.
-// Swap UseInMemoryDatabase for UseNpgsql(...) when going to production.
 builder.Services.AddDbContext<HabitDbContext>(opts =>
     opts.UseInMemoryDatabase("HabitTrackerDemo"));
 
@@ -30,7 +26,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Seed the in-memory database (runs HasData from HabitDbContext.OnModelCreating)
+// Seed the in-memory database
 using (var scope = app.Services.CreateScope())
 {
     scope.ServiceProvider.GetRequiredService<HabitDbContext>().Database.EnsureCreated();
@@ -41,7 +37,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+// NOTE: No UseHttpsRedirection — Railway handles TLS at the edge.
 app.UseCors();
-app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
