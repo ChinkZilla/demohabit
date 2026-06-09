@@ -6,7 +6,7 @@ namespace backend.Database;
 public class Habit
 {
     /// <summary>
-    /// Int PK used to identify this habit.
+    /// Int primary key used to identify this habit.
     /// </summary>
     public int Id { get; set; }
     
@@ -22,18 +22,18 @@ public class Habit
     /// <summary>
     /// User-facing name of habit.
     /// </summary>
-    public string Name { get; set; }
+    public required string Name { get; set; }
     /// <summary>
     /// User-facing description of habit.
     /// </summary>
-    public string Description { get; set; }
+    public required string Description { get; set; }
     /// <summary>
     /// ID of user-facing icon that represents this habit.
     /// </summary>
-    public string IconId { get; set; }
+    public required string IconId { get; set; }
     /// <summary>
     /// Every day of the week this habit is active (and should be logged) on.
     /// </summary>
-    public List<DayOfWeek> ActiveDays { get; set; }
+    public required List<DayOfWeek> ActiveDays { get; set; }
     
 }

@@ -9,8 +9,9 @@ public class User
     /// Primary key to identify a user.
     /// </summary>
     public int Id;
+    
     /// <summary>
     /// Email provided for the user account.
     /// </summary>
-    public string Email;
+    public string? Email;
 }

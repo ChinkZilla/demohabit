@@ -13,6 +13,14 @@ public interface IHabitService
     /// <returns>The <see cref="Habit"/> with the specified ID.</returns>
     /// <exception cref="KeyNotFoundException">No habit exists with the given habit ID.</exception>
     public Task<Habit> GetHabitAsync(int habitId);
+    
+    /// <summary>
+    /// Retrieve the log entries for a given habit within a date range.
+    /// </summary>
+    /// <param name="habitId">ID of habit to retrieve the log of.</param>
+    /// <param name="date">Date to look for log entry within.</param>
+    /// <returns></returns>
+    public Task<List<LogEntry>> GetHabitLogAsync(int habitId, DateOnly startDate, DateOnly endDate);
 
     /// <summary>
     /// Get all habits belonging to the given user, optionally filtered by only habits active on certin days
