@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — this @theme block is the single source of
+   truth for the app's look. Change colors/fonts here and they
+   propagate everywhere (e.g. bg-brand-600, text-brand-700).
+   ============================================================ */
+@theme {
+  /* Type */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand palette (teal) — the app's accent color */
+  --color-brand-50:  #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4b;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+:root { color-scheme: light; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: #fafaf9; /* warm neutral (stone-50) */
+  color: #292524;            /* stone-800 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Leave room for the fixed bottom navigation bar */
+#root { padding-bottom: 5rem; }
